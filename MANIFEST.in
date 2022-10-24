@@ -1,7 +1,6 @@
-include uneye/weights_1+2+3
-include training/weights_1+2+3
-include training/weights_Andersson
-include training/weights_dataset1
-include training/weights_dataset2
-include training/weights_dataset3
-include training/weights_synthetic 
+include uneye/weights/weights_1+2+3
+include uneye/weights/weights_Andersson
+include uneye/weights/weights_dataset1
+include uneye/weights/weights_dataset2
+include uneye/weights/weights_dataset3
+include uneye/weights/weights_synthetic 
