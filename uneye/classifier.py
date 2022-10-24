@@ -71,6 +71,15 @@ class DNN():
         self.inf_correction = inf_correction
         self.val_samples = val_samples
         self.doDiff = doDiff
+        
+        # check if weights_name is absolute path
+        if os.path.isabs(self.weights_name):
+            w_name = self.weights_name
+        else:
+            # output folder: local folder called "training"
+            out_folder = './training'
+            w_name = os.path.join(out_folder,self.weights_name)
+        self.w = torch.load(w_name)
 
     def train(self,X,Y,Labels,seed=1):
         '''
@@ -362,15 +371,7 @@ class DNN():
         n_dim = len(X.shape)
 
         # determine number of classes
-        # check if weights_name is absolute path
-        if os.path.isabs(self.weights_name):
-            w_name = self.weights_name
-        else:
-            # output folder: local folder called "training"
-            out_folder = './training'
-            w_name = os.path.join(out_folder,self.weights_name)
-        w = torch.load(w_name)
-        classes = w['c7.weight'].shape[0]
+        classes = self.w['c7.weight'].shape[0]
         self.net = UNet(classes,self.ks,self.mp)
         
         if n_dim==1:
@@ -403,7 +404,7 @@ class DNN():
         V = Variable(torch.FloatTensor(V).unsqueeze(1),requires_grad=False)
         
         # load pretrained model
-        self.net.load_state_dict(w)   
+        self.net.load_state_dict(self.w)   
         self.net.eval()
         
         # send to gpu if cuda enabled
