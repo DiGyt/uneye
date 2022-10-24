@@ -7,6 +7,7 @@ Contact: marie-estelle.bellet@student.uni-tuebingen.de
 from uneye.functions import *
 import numpy as np
 import os
+import os.path as op
 import math
 from skimage.measure import label
 from scipy import io
@@ -77,7 +78,7 @@ class DNN():
             w_name = self.weights_name
         else:
             # output folder: local folder called "training"
-            out_folder = './training'
+            out_folder = op.join(op.dirname(__file__), "..", "training")
             w_name = os.path.join(out_folder,self.weights_name)
         self.w = torch.load(w_name)
 
