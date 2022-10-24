@@ -1,3 +1,4 @@
+include uneye/weights_1+2+3
 include training/weights_1+2+3
 include training/weights_Andersson
 include training/weights_dataset1
