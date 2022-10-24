@@ -78,7 +78,7 @@ class DNN():
             w_name = self.weights_name
         else:
             # output folder: local folder called "training"
-            out_folder = op.join(op.dirname(__file__), "uneye")
+            out_folder = op.join(op.dirname(__file__), "weights")
             w_name = os.path.join(out_folder,self.weights_name)
         self.w = torch.load(w_name)
 
