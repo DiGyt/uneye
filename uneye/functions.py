@@ -86,7 +86,7 @@ class UNet(nn.Module):
         
         self.sftmax = nn.Softmax(dim=1)
         
-    def forward(self,input,outkeys):
+    def forward(self,input,outkeys=["Fixation", "Saccade"]):
         
         out = {}
         out['in'] = input
